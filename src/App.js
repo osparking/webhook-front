@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import "./App.css";
 
@@ -7,25 +8,31 @@ function App() {
 
   const triggerWebhook = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/webhook-listener", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ event: "user_action", data: message }),
-      });
+      const formData = {
+        event: "user_action",
+        data: message,
+      };
 
-      if (!res.ok) {
+      const res = await axios.post(
+        "http://localhost:8080/api/webhook-listener",
+        JSON.stringify(formData)
+      );
+
+      if (res.status === 200) {
+        const data = await res.data;
+        setResponse(data);
+      } else {
         throw new Error("망 반응 오류 발생");
       }
-
-      const data = await res.text();
-      setResponse(data);
     } catch (error) {
       console.error("웹훅 촉발 오류 발생:", error);
       setResponse("웹훅 촉발 오류 발생.");
     }
   };
+
+  const clearResponse = () => {
+    setResponse("");
+  }
 
   return (
     <div className="App">
@@ -39,6 +46,7 @@ function App() {
         />
         <button onClick={triggerWebhook}>웹훅 자료 서비스</button>
         {response && <p>후단의 반응: {response}</p>}
+        <button onClick={clearResponse}>후단 반응 지우기</button>
       </header>
     </div>
   );
