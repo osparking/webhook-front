@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import "./App.css";
+import { api } from "./util/api";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -13,10 +13,7 @@ function App() {
         data: message,
       };
 
-      const res = await axios.post(
-        "http://localhost:8080/api/webhook-listener",
-        JSON.stringify(formData)
-      );
+      const res = await api.post("/webhook-listener", JSON.stringify(formData));
 
       if (res.status === 200) {
         const data = await res.data;
@@ -32,7 +29,7 @@ function App() {
 
   const clearResponse = () => {
     setResponse("");
-  }
+  };
 
   return (
     <div className="App">
