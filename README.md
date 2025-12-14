@@ -1,3 +1,6 @@
+# 프로젝트 정보
+ - 지역 프로젝트 폴더 위치: /c/Users/jbpar/react/webhook-front
+ - 프로젝트 설명 구글 문서: [웹훅-예제-구글](https://docs.google.com/spreadsheets/d/1jUA2Yx21W87t58gcnf715nSU5uF2K6zmtZgyQ7D-FUc/edit?gid=0#gid=0&range=B51)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
