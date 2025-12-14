@@ -13,7 +13,7 @@ function App() {
         data: message,
       };
 
-      const res = await api.post("/webhook-listener", JSON.stringify(formData));
+      const res = await api.post("/webhook-listener", formData);
 
       if (res.status === 200) {
         const data = await res.data;
