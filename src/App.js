@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>봄 부트 웹훅 촉발하기(triggering)</h1>
+        <h4>봄 부트 웹훅 촉발하기(triggering)</h4>
         <input
           type="text"
           value={message}
